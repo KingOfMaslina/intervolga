@@ -1,0 +1,11 @@
+//Удаление пустых категорий
+DELETE FROM categories
+WHERE id NOT IN(SELECT DISTINCT category_id FROM products)
+
+//Удаление товаров не в наличии
+DELETE FROM products
+WHERE id NOT IN(SELECT DISTINCT product_id FROM availabilities)
+
+//Удаление пустых складов
+DELETE from stocks
+WHERE id NOT IN(SELECT DISTINCT stock_id FROM availabilities)
